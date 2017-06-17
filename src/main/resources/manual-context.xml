@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="application.properties"/>
+
+    <bean id="soccerRepository" class="kata_with_spring.manual_xml.soccer.SoccerRepository">
+        <property name="soccerData" value="${football.location}"/>
+    </bean>
+
+    <bean class="kata_with_spring.manual_xml.soccer.SoccerService">
+        <property name="soccerRepository" ref="soccerRepository"/>
+    </bean>
+
+    <!-- internal beans -->
+    <bean class="kata_with_spring.manual_xml.weather.WeatherService">
+        <property name="weatherRepository">
+            <!-- property namespace -->
+            <bean class="kata_with_spring.manual_xml.weather.WeatherRepository" p:weatherData="${weather.location}"/>
+        </property>
+    </bean>
+</beans>

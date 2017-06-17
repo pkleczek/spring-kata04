@@ -1,4 +1,4 @@
-package kata04.weather;
+package kata_with_spring.manual_xml.weather;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
  */
 
 public class WeatherRepository {
-    public List<WeatherMeasurement> read(Path weatherData) {
+    private Path weatherData;
+
+    public List<WeatherMeasurement> read() {
         try {
             return Files.readAllLines(weatherData).stream()
                     .map(line -> line.trim().split("(\\s)+"))
@@ -21,6 +23,14 @@ public class WeatherRepository {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public Path getWeatherData() {
+        return weatherData;
+    }
+
+    public void setWeatherData(Path weatherData) {
+        this.weatherData = weatherData;
     }
 
     private static int cleanValue(String s) {

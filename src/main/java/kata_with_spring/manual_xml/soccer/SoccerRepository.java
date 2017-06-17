@@ -1,4 +1,4 @@
-package kata04.soccer;
+package kata_with_spring.manual_xml.soccer;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
  */
 public class SoccerRepository {
 
-    public List<TeamStats> read(Path soccerData) {
+    private Path soccerData;
+
+    public List<TeamStats> read() {
         try {
             return Files.readAllLines(soccerData).stream()
                     .map(line -> line.trim().split("(\\s)+"))
@@ -23,5 +25,13 @@ public class SoccerRepository {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public Path getSoccerData() {
+        return soccerData;
+    }
+
+    public void setSoccerData(Path soccerData) {
+        this.soccerData = soccerData;
     }
 }

@@ -1,9 +1,9 @@
-package kata_with_spring.java_config;
+package kata_with_spring.autoscan;
 
-import kata_with_spring.java_config.soccer.SoccerService;
-import kata_with_spring.java_config.soccer.TeamStats;
-import kata_with_spring.java_config.weather.WeatherMeasurement;
-import kata_with_spring.java_config.weather.WeatherService;
+import kata_with_spring.autoscan.soccer.SoccerService;
+import kata_with_spring.autoscan.soccer.TeamStats;
+import kata_with_spring.autoscan.weather.WeatherMeasurement;
+import kata_with_spring.autoscan.weather.WeatherService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -20,13 +20,5 @@ public class Main {
         WeatherService weatherService = context.getBean(WeatherService.class);
         WeatherMeasurement lowestSpread = weatherService.findLowestSpread();
         System.out.printf("%s: %d\n", lowestSpread.getDay(), lowestSpread.getSpread());
-
-        WeatherService weatherService2 = context.getBean(WeatherService.class);
-        WeatherService weatherService3 = context.getBean(WeatherService.class);
-
-        System.out.println(weatherService2);
-        System.out.println(weatherService3);
-
-
     }
 }

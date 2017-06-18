@@ -7,6 +7,7 @@ import kata_with_spring.java_config.weather.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 
@@ -37,6 +38,7 @@ public class Configuration {
     }
 
     @Bean
+    @Scope(value = "prototype")
     WeatherService weatherService() throws IOException {
         WeatherService weatherService = new WeatherService();
         WeatherRepository weatherRepository = new WeatherRepository();
